@@ -1,6 +1,7 @@
+require('dotenv').config()
+
 const express = require('express')
 const mongoose = require('mongoose')
-require('dotenv').config()
 
 const app = express()
 app.use(express.json())
@@ -17,10 +18,12 @@ app.get('/', async (req, res) => {
     const films = await Film.find()
     return res.send(films)
 })
+
 app.delete('/:id', async (req, res) => {
     const film = await Film.findByIdAndDelete(req.params.id)
     return res.send(film)
 })
+
 app.put('/:id', async (req, res) => {
     const film = await Film.findByIdAndUpdate(
         req.params.id,
@@ -49,8 +52,6 @@ app.post('/', async (req, res) => {
 })
 
 app.listen(port, () => {
-    mongoose.connect(
-        'mongodb+srv://cabraldasilvac:lFmIrQfiiOrTw@starwars-api.rkamhdz.mongodb.net/?retryWrites=true&w=majority&appName=starwars-api'
-    )
+    mongoose.connect(process.env.DATABASE_URL)
     console.log(`Example app listening on port ${port}`)
 })
