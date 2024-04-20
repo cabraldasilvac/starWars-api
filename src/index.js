@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+require('dotenv').config()
 
 const app = express()
 app.use(express.json())
@@ -49,7 +50,7 @@ app.post('/', async (req, res) => {
 
 app.listen(port, () => {
     mongoose.connect(
-        'mongodb+srv://wcabraldasilvac:JM3lFmIrQfiiOrTw@starwars-api.rkamhdz.mongodb.net/?retryWrites=true&w=majority&appName=starwars-api'
+        'mongodb+srv://cabraldasilvac:lFmIrQfiiOrTw@starwars-api.rkamhdz.mongodb.net/?retryWrites=true&w=majority&appName=starwars-api'
     )
     console.log(`Example app listening on port ${port}`)
 })
